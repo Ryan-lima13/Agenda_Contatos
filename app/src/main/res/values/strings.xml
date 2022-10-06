@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Agenda Contatos</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="bt_entrar">Entrar</string>
+    <string name="bt_cadastrar">Cadastrar</string>
+    <string name="txt_cadastrar">Não tem conta? clique Aqui!</string>
+</resources>
