@@ -1,5 +1,9 @@
 package model;
 
+import com.google.firebase.database.DatabaseReference;
+
+import helpe.ConfiguracaoFirebase;
+
 public class Usuario {
     private String idUsuario;
     private  String nome;
@@ -7,6 +11,17 @@ public class Usuario {
     private  String senha;
 
     public Usuario() {
+        DatabaseReference usuariosRef = ConfiguracaoFirebase.getDatabaseReference()
+                .child("usuarios");
+        setIdUsuario(usuariosRef.push().getKey());
+    }
+    public  void salvar(){
+        DatabaseReference usuariosRef = ConfiguracaoFirebase.getDatabaseReference()
+                .child("usuarios");
+        usuariosRef.child(idUsuario)
+                .setValue(this);
+
+
     }
 
     public String getIdUsuario() {
