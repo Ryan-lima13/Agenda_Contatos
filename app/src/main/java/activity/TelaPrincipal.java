@@ -7,19 +7,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.rlds.agendacontatos.R;
+import com.rlds.agendacontatos.databinding.ActivityTelaPrincipalBinding;
 
 import helpe.ConfiguracaoFirebase;
 
 public class TelaPrincipal extends AppCompatActivity {
+    private ActivityTelaPrincipalBinding binding;
     private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_principal);
+        binding = ActivityTelaPrincipalBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        // adicionar contatos
+        binding.imageAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TelaPrincipal.this, AdicionarContatos.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 

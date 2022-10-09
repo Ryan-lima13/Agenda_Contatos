@@ -13,6 +13,20 @@
         android:theme="@style/Theme.AgendaContatos"
         tools:targetApi="31">
         <activity
+            android:name="activity.ListaContatos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="activity.AdicionarContatos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="activity.TelaPrincipal"
             android:exported="false">
             <meta-data
