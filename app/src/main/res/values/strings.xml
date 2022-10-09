@@ -5,5 +5,6 @@
     <string name="senha">Senha</string>
     <string name="bt_entrar">Entrar</string>
     <string name="bt_cadastrar">Cadastrar</string>
+    <string name="sair">Sair</string>
     <string name="txt_cadastrar">Não tem conta? clique Aqui!</string>
 </resources>

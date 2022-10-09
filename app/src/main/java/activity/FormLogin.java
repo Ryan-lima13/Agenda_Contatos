@@ -65,7 +65,7 @@ public class FormLogin extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(FormLogin.this, "entrou",Toast.LENGTH_SHORT).show();
+                    abrirTelaPrincipal();
                 }else {
                     Toast.makeText(FormLogin.this, " não entrou",Toast.LENGTH_SHORT).show();
 
@@ -75,5 +75,23 @@ public class FormLogin extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        usuarioLogado();
+    }
+
+    private  void abrirTelaPrincipal(){
+        Intent intent = new Intent(FormLogin.this, TelaPrincipal.class);
+        startActivity(intent);
+        finish();
+    }
+    private void usuarioLogado(){
+        autenticacao = ConfiguracaoFirebase.getFirebaseAuth();
+        if( autenticacao.getCurrentUser() != null){
+            abrirTelaPrincipal();
+        }
     }
 }
