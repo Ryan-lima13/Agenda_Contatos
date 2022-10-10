@@ -16,12 +16,10 @@ import com.rlds.agendacontatos.R;
 import com.rlds.agendacontatos.databinding.ActivityFormLoginBinding;
 
 import helpe.ConfiguracaoFirebase;
-import model.Usuario;
 
 public class FormLogin extends AppCompatActivity {
     private ActivityFormLoginBinding binding;
     private FirebaseAuth autenticacao;
-    private Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +47,17 @@ public class FormLogin extends AppCompatActivity {
                 }else {
                     binding.txtErro.setText("");
                     // fazer login
-                    usuario = new Usuario();
-                    usuario.setEmail(email);
-                    usuario.setSenha(senha);
                     logarUsuario();
                 }
             }
         });
     }
     private  void logarUsuario(){
+        String email = binding.txtEmail.getText().toString();
+        String senha = binding.txtSenha.getText().toString();
         autenticacao = ConfiguracaoFirebase.getFirebaseAuth();
         autenticacao.signInWithEmailAndPassword(
-                usuario.getEmail(), usuario.getSenha()
+                email, senha
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

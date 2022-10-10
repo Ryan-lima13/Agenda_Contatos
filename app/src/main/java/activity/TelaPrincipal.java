@@ -33,6 +33,13 @@ public class TelaPrincipal extends AppCompatActivity {
 
             }
         });
+        binding.imageContatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( TelaPrincipal.this, ListaContatos.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

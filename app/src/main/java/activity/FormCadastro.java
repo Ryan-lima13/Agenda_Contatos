@@ -19,11 +19,10 @@ import com.rlds.agendacontatos.R;
 import com.rlds.agendacontatos.databinding.ActivityFormCadastroBinding;
 
 import helpe.ConfiguracaoFirebase;
-import model.Usuario;
 
 public class FormCadastro extends AppCompatActivity {
     private ActivityFormCadastroBinding binding;
-    private Usuario usuario;
+    
     private FirebaseAuth autenticacao;
 
     @Override
@@ -37,19 +36,14 @@ public class FormCadastro extends AppCompatActivity {
         binding.btCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nome = binding.editNome.getText().toString();
                 String email = binding.editEmail.getText().toString();
                 String senha = binding.editSenha.getText().toString();
-                if( nome.isEmpty() || email.isEmpty() || senha.isEmpty()){
+                if( email.isEmpty() || senha.isEmpty()){
                     binding.txtErro.setText("Preencha todos os campos!");
                     binding.txtErro.setTextColor(getColor(R.color.red));
 
                 }else {
                     binding.txtErro.setText("");
-                    usuario = new Usuario();
-                    usuario.setNome(nome);
-                    usuario.setEmail(email);
-                    usuario.setSenha(senha);
                     // cadastrar
                     cadastrarusario();
 
@@ -58,14 +52,17 @@ public class FormCadastro extends AppCompatActivity {
         });
     }
     private  void cadastrarusario(){
+        String email = binding.editEmail.getText().toString();
+        String senha = binding.editSenha.getText().toString();
+
         autenticacao = ConfiguracaoFirebase.getFirebaseAuth();
         autenticacao.createUserWithEmailAndPassword(
-                usuario.getEmail(), usuario.getSenha()
+                email, senha
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    usuario.salvar();
+
                     Toast.makeText(FormCadastro.this, "usuario cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(FormCadastro.this, TelaPrincipal.class);
                     startActivity(intent);
